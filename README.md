@@ -30,7 +30,7 @@ PORT=3000
 
 3. **Iniciar servidor:**
 ```bash
-npm start
+npm run dev
 ```
 
 4. **Acessar:**
