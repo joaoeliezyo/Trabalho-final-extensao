@@ -1,0 +1,95 @@
+<%- include('../cabecalho', { titulo: 'Consulta de projeto_assinatura' }) %>
+
+
+  <% const lista=Array.isArray(dados) ? dados : []; %>
+    <% const idPessoaSessao=(typeof id_pessoa !=='undefined' ) ? Number(id_pessoa) : null; %>
+      <% const formatDataHora=(data)=> { if (!data) return ''; const dObj = new Date(data); if
+        (Number.isNaN(dObj.getTime())) return data; return dObj.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo'
+        }); }; %>
+        <% const mostrarSomentePrimeiraData=(typeof id_projeto !=='undefined' && id_projeto); %>
+          <% const totalAssinaturas=(typeof resumoAssinaturas !=='undefined' && resumoAssinaturas && typeof
+            resumoAssinaturas.total_assinaturas !=='undefined' ) ? Number(resumoAssinaturas.total_assinaturas) :
+            lista.length; %>
+            <% const primeiraDataAssinatura=(()=> { if (typeof resumoAssinaturas !== 'undefined' && resumoAssinaturas) {
+              return resumoAssinaturas.primeira_data; } if (lista.length > 0) { return lista[0].data_hora; } return
+              null; })(); %>
+              <main id="conteudo-principal-form" class="container my-5">
+                <section id="secao-cadastro-projeto" class="card shadow p-4 p-md-5">
+                  <h1 class="fs-4 fw-bold mb-4 border-bottom pb-3">Assinar Projeto</h1>
+                  <div id="form-feedback-message" class="alert d-none" role="alert">
+                  </div>
+                  <% if (typeof id_projeto !=='undefined' && id_projeto) { %>
+                    <div class="mb-4">
+                      <p>Assinar projeto: <strong>
+                          <%= id_projeto %>
+                        </strong></p>
+                      <form method="POST" action="/projeto_assinatura/<%= id_projeto %>/assinar">
+                        <input type="hidden" name="id_projeto" value="<%= id_projeto %>">
+                        <button type="submit" class="btn btn-primary btn-sm">Assinar</button>
+                      </form>
+                    </div>
+                    <div class="mb-4">
+                      <p class="mb-1">Assinaturas existentes: <strong>
+                          <%= totalAssinaturas %>
+                        </strong></p>
+                      <p class="mb-0">Primeira data de assinatura: <strong>
+                          <%= primeiraDataAssinatura ? formatDataHora(primeiraDataAssinatura) : '---' %>
+                        </strong></p>
+                    </div>
+                    <% } %>
+                      <div class="table-responsive">
+                        <table class="table table-striped table-hover" border="1">
+                          <thead class="table-dark">
+                            <tr>
+                              <th>id</th>
+                              <th>Projeto</th>
+                              <th>Assinate</th>
+                              <th>Assinatura</th>
+                              <th>data_hora</th>
+                              <!--     <th>ordem</th> -->
+                              <th>Ação</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% lista.forEach((d, idx)=> { %><tr>
+                                <td>
+                                  <%= d.id %>
+                                </td>
+                                <td>
+                                  <%= d.titulo %>
+                                </td>
+                                <td>
+                                  <%= d.nome %>
+                                </td>
+                                <td>
+                                  <%= d.Assinatura %>
+                                </td>
+                                <td>
+                                  <%= formatDataHora(d.data_hora) %>
+                                </td>
+                                <!--      <td><%= d.Assinatura ? 'Assinado' : '' %></td>   -->
+                                <!--
+
+            <td><%= mostrarSomentePrimeiraData ? (idx === 0 ? formatDataHora(primeiraDataAssinatura) : '') : formatDataHora(d.data_hora) %></td> -->
+                                <!--     <td><%= d.ordem %></td>  -->
+                                <td class="d-flex gap-2">
+                                  <!--     <a href="/projeto_assinatura/<%= d.id %>/edit" class="btn btn-primary btn-sm">Editar</a> -->
+                                  <% if (idPessoaSessao !==null && Number(d.id_pessoa)===idPessoaSessao) { %>
+                                    <form method="POST" action="/projeto_assinatura/<%= d.id %>/delete"
+                                      onsubmit="return confirm('Deseja realmente excluir esta assinatura?');">
+                                      <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                                    </form>
+                                    <% } else { %> - <% } %>
+                                </td>
+                              </tr>
+                              <% }) %>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <!-- <button type="button" class="btn btn-danger btn-sm">Sair</button> -->
+                        <a href="/projeto_extensao/" class="btn btn-danger">Voltar</a>
+                      </div>
+                </section>
+              </main>
+              <%- include('../rodape') %>

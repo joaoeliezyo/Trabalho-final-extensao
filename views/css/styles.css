@@ -1,0 +1,510 @@
+/* ===== formcet/css/styles.css ===== */
+
+/* ==========================================================================
+   Variáveis e Reset Básico
+   ========================================================================== */
+
+:root {
+  /* Cores base UNI•CET */
+  --brand: #1c6e36; /* Verde principal */
+  --brand-600: #165a2c; /* Hover do brand */
+  --brand-soft: #e8f3ec; /* Fundo leve/acento claro */
+  --dark-green: #1a5e30; /* Verde mais escuro para sidebar */
+  --text-sidebar-active: #eaf7ef; /* Cor do texto para item ativo da sidebar */
+
+  /* Cores de UI */
+  --bg: #f6f7f9; /* Fundo geral da página */
+  --card: #ffffff; /* Fundo dos cartões */
+  --text: #2b2f36; /* Texto principal */
+  --muted: #6b7280; /* Texto secundário/label */
+  --line: #e7e9ee; /* Linhas/tabelas/bordas */
+  --shadow: 0 8px 20px rgba(16, 24, 40, 0.06); /* Sombra para cards */
+
+  /* Cores de Status (Bootstrap variantes) */
+  --bs-primary: #0d6efd; /* Exemplo se precisar de azul padrão bootstrap */
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-secondary: #6c757d;
+
+  /* Tipografia e Dimensões */
+  --radius: 14px;
+  --radius-sm: 10px;
+  --font: 'Inter', ui-sans-serif, -apple-system, Segoe UI, Roboto, Arial,
+    'Noto Sans';
+  --sidebar-width: 250px;
+}
+
+/* Reset básico (mantido do original) */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: radial-gradient(
+      1200px 600px at 80% -60%,
+      rgba(28, 110, 54, 0.07),
+      transparent 60%
+    ),
+    var(--bg);
+  overflow-x: hidden; /* Esconde a barra de rolagem horizontal */
+}
+
+/* ==========================================================================
+   Integração e Sobrescritas Bootstrap
+   ========================================================================== */
+
+/* Cores de brand para Bootstrap */
+.btn-primary,
+.bg-primary {
+  background-color: var(--brand) !important;
+  border-color: var(--brand) !important;
+}
+.btn-primary:hover,
+.bg-primary:hover {
+  background-color: var(--brand-600) !important;
+}
+.text-primary {
+  color: var(--brand) !important;
+}
+
+/* Tabelas */
+.table thead th {
+  background-color: var(--brand-soft);
+  color: var(--text);
+  border-bottom: 2px solid var(--brand);
+}
+.table th,
+.table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.table th {
+  color: #667085;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.table tr:hover {
+  background: #fafbfc;
+}
+.table .btn-sm {
+  /* Ajuste para botões de ação na tabela */
+  padding: 6px 9px;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+.caption-top {
+  /* Caption da Tabela */
+  caption-side: top;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: var(--muted);
+  text-align: left;
+}
+
+/* Formulários */
+.form-control:focus,
+.form-select:focus,
+.form-control[type='date']:focus {
+  border-color: var(--brand) !important;
+  box-shadow: 0 0 0 0.25rem rgba(28, 110, 54, 0.25) !important;
+}
+label {
+  display: block;
+  margin: 12px 0 6px;
+  color: #475569;
+  font-size: 0.92rem;
+}
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #9aa3b2;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(28, 110, 54, 0.45);
+  box-shadow: 0 0 0 3px rgba(28, 110, 54, 0.12);
+}
+
+/* Botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.02s;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--brand-600);
+}
+.btn-ghost {
+  background: #fff;
+  color: #374151;
+  border-color: var(--line);
+}
+.btn-ghost:hover {
+  border-color: #cfd3dc;
+}
+.btn-danger {
+  background: var(--bs-danger);
+  color: #fff;
+}
+.btn-success {
+  background: var(--bs-success);
+  color: #fff;
+}
+.btn-info {
+  background: var(--bs-info);
+  color: #fff;
+}
+.btn-warning {
+  background: var(--bs-warning);
+  color: #212529;
+}
+
+/* Símbolos */
+.badge {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.badge.bg-warning {
+  background-color: var(--bs-warning) !important;
+  color: #212529 !important;
+  border: 1px solid rgba(255, 193, 7, 0.3) !important;
+}
+.badge.bg-success {
+  background-color: var(--bs-success) !important;
+  border: 1px solid rgba(25, 135, 84, 0.3) !important;
+}
+.badge.bg-danger {
+  background-color: var(--bs-danger) !important;
+  border: 1px solid rgba(220, 53, 69, 0.3) !important;
+}
+
+/* Tipografia Geral (mantido do original) */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #1f2937;
+}
+.helper {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+/* ==========================================================================
+   Layout com Sidebar
+   ========================================================================== */
+
+#wrapper {
+  /* Contêiner principal para sidebar e conteúdo */
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar-wrapper {
+  /* Classe geral para as sidebars */
+  min-height: 100vh;
+  margin-left: calc(
+    -1 * var(--sidebar-width)
+  ); /* Esconde a sidebar por padrão em mobile */
+  transition: margin 0.25s ease-out;
+  background-color: var(--dark-green);
+  width: var(--sidebar-width);
+  position: fixed; /* Mudar para fixed para mobile para deslizar por cima */
+  top: 0;
+  left: 0;
+  z-index: 1030; /* Acima do navbar */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+}
+
+.sidebar-heading {
+  /* Título e info do usuário na sidebar */
+  padding: 1.5rem 1.25rem;
+  font-size: 1.2rem;
+  color: rgb(7, 7, 7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sidebar-heading img {
+  margin-bottom: 0.5rem;
+}
+.sidebar-heading h2 {
+  color: white; /* Garante cor branca para o título */
+  margin-top: 0.5rem;
+}
+.sidebar-heading span {
+  color: rgba(255, 255, 255, 0.7); /* Cor mais suave para o email */
+  font-size: 0.85rem;
+}
+
+.menu-lateral {
+  /* Contêiner para os itens do menu, ajustado para flexbox */
+  width: 100%;
+  flex-grow: 1; /* Faz o menu ocupar o espaço restante */
+  display: flex;
+  flex-direction: column; /* Organiza os itens verticalmente */
+}
+.menu-lateral .list-group-item:last-child {
+  margin-top: auto !important; /* Empurra o último item (Sair) para baixo */
+}
+
+.menu-lateral .list-group-item {
+  /* Itens individuais do menu */
+  color: rgba(0, 0, 0, 0.7);
+  padding: 0.85rem 1.5rem;
+  border: none;
+  border-left: 4px solid transparent;
+  transition: background-color 0.2s, color 0.2s, border-left-color 0.2s;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.menu-lateral .list-group-item:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.menu-lateral .list-group-item.active {
+  color: var(--text-sidebar-active);
+  background-color: var(--brand-600);
+  border-left-color: white;
+}
+
+.page-content-wrapper {
+  /* Área principal do conteúdo */
+  min-width: 100vw; /* Ocupa a largura total */
+  background-color: var(--bg);
+  flex-grow: 1;
+}
+
+/* Toggle do Sidebar */
+#wrapper.toggled .sidebar-wrapper {
+  margin-left: 0; /* Mostra a sidebar */
+}
+
+/* Media Query para Desktop: Sidebar sempre visível */
+@media (min-width: 768px) {
+  .sidebar-wrapper {
+    margin-left: 0; /* Sidebar sempre visível em desktop */
+    position: sticky; /* Fixo no scroll em desktop */
+  }
+  .page-content-wrapper {
+    min-width: 0; /* Permite que o conteúdo se ajuste à largura */
+    width: auto; /* Ocupa o restante do espaço */
+  }
+  #wrapper.toggled .sidebar-wrapper {
+    /* Permite esconder a sidebar em desktop se quiser, mas por padrão estará visível */
+    margin-left: calc(-1 * var(--sidebar-width));
+  }
+}
+
+/* ==========================================================================
+   Componentes Específicos do Dashboard
+   ========================================================================== */
+
+/* Navbar Superior dentro do Conteúdo */
+.top-navbar {
+  background-color: var(--card) !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--line) !important;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.top-navbar .navbar-brand {
+  color: var(--text);
+  font-size: 1.5rem; /* Ajuste o tamanho do título aqui */
+}
+.top-navbar .dropdown-toggle img {
+  /* Avatar */
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+/* Cards de KPI (Novo Estilo) */
+.card-kpi {
+  border: none;
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease-in-out;
+}
+.card-kpi:hover {
+  transform: translateY(-5px);
+}
+.card-kpi .fa-3x {
+  /* Ícones dentro dos KPIs */
+  min-width: 60px;
+  text-align: center;
+}
+.card-kpi small {
+  /* Texto secundário nos KPIs */
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.2;
+}
+.card-kpi p {
+  /* Valor principal do KPI */
+  line-height: 1.1;
+}
+
+/* Cards de Gráficos */
+.card-chart {
+  border: none;
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease-in-out;
+}
+.card-chart:hover {
+  transform: translateY(-5px);
+}
+.card-chart .chart-message {
+  /* Estilo para mensagens de carregamento/erro em gráficos */
+  background-color: var(--brand-soft); /* Um fundo suave */
+  border-color: var(--line) !important;
+  min-height: 250px; /* Garante que o placeholder tenha um tamanho mínimo */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--muted);
+}
+.card-chart .chart-message .fa-4x,
+.card-chart .chart-message .fa-spin {
+  color: var(--muted); /* Cor para os ícones de placeholder */
+  opacity: 0.4;
+}
+
+/* Esconder canvas inicialmente para exibir mensagem de carregamento */
+.chart-container canvas {
+  display: none;
+}
+
+/* Tabela - Linha de Carregamento */
+.loading-row td {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Páginas Específicas
+   ========================================================================== */
+
+/* Login Page (mantido do original, apenas renomeei o container para semântica) */
+.login-container {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.login-card {
+  /* Já estava em styles.css, ajustei aqui */
+  width: 100%;
+  max-width: 440px;
+}
+/* Estilos para feedback de erro no login */
+#login-error-message {
+  color: var(--bs-danger);
+  font-size: 0.875em;
+  margin-top: 0.5rem;
+}
+
+.form-container {
+  /* Classe para o container principal do formulário */
+  max-width: 1120px;
+  margin: 32px auto;
+  padding: 0 20px;
+}
+.form-header {
+  /* Cabeçalho do formulário, se precisar de estilos específicos */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+/* Estilo para mensagens de feedback no formulário */
+#form-feedback-message {
+  margin-top: 1rem;
+}
+
+/* Novo estilo para o navbar do Professor */
+.top-navbar-professor {
+  background-color: var(--brand) !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  color: white;
+}
+.top-navbar-professor .navbar-brand img {
+  filter: brightness(0) invert(1); /* Garante que o logo seja branco */
+}
+.top-navbar-professor .navbar-text {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Rodapé Geral */
+.app-footer {
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-align: center;
+  background-color: transparent; /* Padrão */
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.page-content-wrapper .app-footer {
+  /* Rodapé dentro do conteúdo principal */
+  background-color: var(--card); /* Fundo branco para o rodapé */
+  border-top: 1px solid var(--line);
+}
+
+/* Ajustes de responsividade para rodapé */
+@media (max-width: 767.98px) {
+  .app-footer {
+    margin-top: 2rem !important; /* Menos margem em mobile */
+  }
+}

@@ -1,0 +1,63 @@
+
+<%- include('../cabecalho', { titulo: isEdit ? 'Editar Projeto Pessoa' : 'Cadastrar Projeto Pessoa' }) %>
+
+<% const registro = typeof projeto_pessoa !== 'undefined' ? projeto_pessoa : null; %>
+<% const registroId = registro && registro['id_projeto']; %>
+<main id="conteudo-principal-form" class="container my-5">
+  <section class="card shadow p-4 p-md-5">
+    <h1 class="fs-4 fw-bold mb-4 border-bottom pb-3">
+      <%= isEdit ? 'Editar projeto pessoa' : 'Cadastrar projeto pessoa' %>
+    </h1>
+    <form method="POST" action="<%= isEdit ? '/projeto_pessoa/' + registroId + '/edit' : '/projeto_pessoa/cadastrar' %>">
+
+      <div class="mb-3">
+        <label for="campo-id_projeto" class="form-label">Id Projeto</label>
+        <input
+          id="campo-id_projeto"
+          name="id_projeto"
+          class="form-control"
+          value="<%= registro && registro['id_projeto'] != null ? registro['id_projeto'] : '' %>"
+          placeholder="Id Projeto"
+          <%= isEdit ? 'readonly' : '' %>
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-id_pessoa" class="form-label">Id Pessoa</label>
+        <input
+          id="campo-id_pessoa"
+          name="id_pessoa"
+          class="form-control"
+          value="<%= registro && registro['id_pessoa'] != null ? registro['id_pessoa'] : '' %>"
+          placeholder="Id Pessoa"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-id_papel" class="form-label">Id Papel</label>
+        <input
+          id="campo-id_papel"
+          name="id_papel"
+          class="form-control"
+          value="<%= registro && registro['id_papel'] != null ? registro['id_papel'] : '' %>"
+          placeholder="Id Papel"
+          required
+        >
+      </div>
+      <div class="d-flex gap-2 mt-4">
+        <button type="submit" class="btn btn-primary">
+          <%= isEdit ? 'Salvar alteracoes' : 'Cadastrar' %>
+        </button>
+        <a href="/projeto_pessoa" class="btn btn-secondary">Voltar</a>
+      </div>
+    </form>
+
+    <% if (isEdit && registroId) { %>
+    <form method="POST" action="/projeto_pessoa/<%= registroId %>/delete" class="mt-3">
+      <button type="submit" class="btn btn-danger">Excluir</button>
+    </form>
+    <% } %>
+  </section>
+</main>
+<%- include('../rodape') %>

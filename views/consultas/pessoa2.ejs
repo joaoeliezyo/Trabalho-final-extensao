@@ -1,0 +1,30 @@
+<%- include('../cabecalho', { titulo: 'Consulta de Pessoa' }) %>
+  <main id="conteudo-principal-form" class="container my-5">
+    <section id="secao-cadastro-projeto" class="card shadow p-4 p-md-5">
+      <h1 class="fs-4 fw-bold mb-4 border-bottom pb-3" id="titulo-cadastro-projeto">Cadastrar Nova Pessoa</h1>
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="fw-semibold">Inserir novo registro</span>
+        <a href="/pessoa/forms/pessoa" class="btn btn-success btn-sm">Nova pessoa</a>
+      </div>
+
+
+      <div id="form-feedback-message" class="alert d-none" role="alert">
+        <!-- Mensagens de sucesso ou erro serão inseridas aqui pelo servidor -->
+      </div>
+<table border="1">
+  <thead><tr><th>id_pessoa</th><th>nome</th><th>cpf</th><th>email</th><th>telefone</th><th>id_tipo_pessoa</th></tr></thead>
+  <tbody><% dados.forEach(d => { %><tr><td><%= d.id_pessoa %></td><td><%= d.nome %></td><td><%= d.cpf %></td><td><%= d.email %></td><td><%= d.telefone %></td><td><%= d.id_tipo_pessoa %></td></tr><% }) %></tbody>
+</table>
+
+    </section>
+  </main>
+
+  <footer id="rodape-professor" class="text-center py-4 text-muted small mt-5 app-footer">UNI•CET © 2025 — Extensão Acadêmica</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+
+  </script>
+  
+</body>
+</html>

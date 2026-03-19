@@ -1,0 +1,30 @@
+
+<%- include('../cabecalho', { titulo: 'Consulta de projeto_pessoa' }) %>
+
+  <main id="conteudo-principal-form" class="container my-5">
+    <section id="secao-cadastro-projeto" class="card shadow p-4 p-md-5">
+      <h1 class="fs-4 fw-bold mb-4 border-bottom pb-3">projeto_pessoa cadastrados</h1>
+      <div id="form-feedback-message" class="alert d-none" role="alert">
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover" border="1">
+          <thead class="table-dark">
+            <tr><th>id_projeto</th><th>id_pessoa</th><th>id_papel</th>
+            <th>Ação</th>
+            </tr>            
+          </thead>
+          <tbody><% dados.forEach(d => { %><tr><td><%= d.id_projeto %></td><td><%= d.id_pessoa %></td><td><%= d.id_papel %></td>
+          <td>
+            <a href="/projeto_pessoa/<%= d.id_projeto %>/edit" class="btn btn-primary btn-sm">Editar</a>
+            <a href="/projeto_pessoa/<%= d.id_projeto %>/delete" class="btn btn-danger btn-sm">Excluir</a>
+          </td>
+        </tr><% }) %></tbody>
+        </table>
+      </div>
+      <div>
+       <!-- <button type="button" class="btn btn-danger btn-sm">Sair</button> -->
+        <a href="/logo" class="btn btn-secondary">Voltar</a>
+    </div>
+    </section>
+  </main>
+<%- include('../rodape') %>

@@ -1,0 +1,128 @@
+<% const registro = typeof projeto_custo !== 'undefined' ? projeto_custo : null; %>
+<% const registroId = registro && registro['Id']; %>
+<% const formatBR = (valor) => {
+  const num = Number(valor);
+  if (Number.isNaN(num)) return valor ?? '';
+  return num.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}; %>
+<main id="conteudo-principal-form" class="container my-5">
+  <section class="card shadow p-4 p-md-5">
+    <h1 class="fs-4 fw-bold mb-4 border-bottom pb-3">
+      <%= isEdit ? 'Editar custo e receitas do projeto' : 'Cadastrar custo e receitas do projeto' %>
+    </h1>
+    <form method="POST" action="<%= isEdit ? '/projeto_custo/' + registroId + '/edit' : '/projeto_custo/cadastrar' %>">
+
+      <div class="mb-3">
+        <label for="campo-Id" class="form-label">Id</label>
+        <input
+          id="campo-Id"
+          name="Id"
+          class="form-control"
+          value="<%= registro && registro['Id'] != null ? registro['Id'] : '' %>"
+          placeholder="Id"
+          <%= isEdit ? 'readonly' : '' %>
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-id_projeto" class="form-label">Id Projeto</label>
+        <input
+          id="campo-id_projeto"
+          name="id_projeto"
+          class="form-control"
+          value="<%= registro && registro['id_projeto'] != null ? registro['id_projeto'] : '' %>"
+          placeholder="Id Projeto"
+          required
+          readonly
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-descricao" class="form-label">Descrição</label>
+        <input
+          id="campo-descricao"
+          name="descricao"
+          class="form-control"
+          value="<%= registro && registro['descricao'] != null ? registro['descricao'] : '' %>"
+          placeholder="Descricao"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-quantitativo" class="form-label">Quantitativo</label>
+        <input
+          id="campo-quantitativo"
+          name="quantitativo"
+          class="form-control"
+          value="<%= registro && registro['quantitativo'] != null ? registro['quantitativo'] : '' %>"
+          placeholder="Quantitativo"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-valor_unitario" class="form-label">Valor Unitário R$</label>
+        <input
+          id="campo-valor_unitario"
+          name="valor_unitario"
+          class="form-control"
+          value="<%= registro && registro['valor_unitario'] != null ? formatBR(registro['valor_unitario']) : '' %>"
+          placeholder="Valor Unitario"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-justificativa" class="form-label">Justificativa</label>
+        <input
+          id="campo-justificativa"
+          name="justificativa"
+          class="form-control"
+          value="<%= registro && registro['justificativa'] != null ? registro['justificativa'] : '' %>"
+          placeholder="Justificativa"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-realizado" class="form-label">Realizado</label>
+        <select
+          id="campo-realizado"
+          name="realizado"
+          class="form-select"
+          required
+        >
+          <option value="0" <%= (!registro || registro['realizado'] == null || Number(registro['realizado']) === 0) ? 'selected' : '' %>>Não</option>
+          <option value="1" <%= Number(registro && registro['realizado']) === 1 ? 'selected' : '' %>>Sim</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-tipo" class="form-label">Tipo</label>
+        <select
+          id="campo-tipo"
+          name="tipo"
+          class="form-select"
+          required
+        >
+          <option value="1" <%= Number(registro && registro['tipo']) === 1 ? 'selected' : '' %>>1 - Despesa Corrente</option>
+          <option value="2" <%= Number(registro && registro['tipo']) === 2 ? 'selected' : '' %>>2 - Despesa de Capital</option>
+          <option value="3" <%= Number(registro && registro['tipo']) === 3 ? 'selected' : '' %>>3 - Doação</option>
+        </select>
+      </div>
+      <div class="d-flex gap-2 mt-4">
+        <button type="submit" class="btn btn-primary">
+          <%= isEdit ? 'Salvar alteracoes' : 'Cadastrar' %>
+        </button>
+        <a href="/projeto_custo" class="btn btn-secondary">Voltar</a>
+      </div>
+    </form>
+
+    <% if (isEdit && registroId) { %>
+    <form method="POST" action="/projeto_custo/<%= registroId %>/delete" class="mt-3">
+      <button type="submit" class="btn btn-danger">Excluir</button>
+    </form>
+    <% } %>
+  </section>
+</main>

@@ -1,0 +1,32 @@
+<%- include('../cabecalho') %>
+
+<div class="container mt-4">
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <h2><i class="bi bi-people"></i> Público-Alvo</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <form method="POST" action="<%= isEdit ? `/publico_alvo/${publico_alvo.id_publico_alvo}/edit` : '/publico_alvo/cadastrar' %>">
+        
+        <div class="mb-3">
+          <label for="descricao" class="form-label">Descrição</label>
+          <input type="text" class="form-control" id="descricao" name="descricao" value="<%= publico_alvo.descricao || '' %>" required>
+        </div>
+
+        <div class="d-flex gap-2">
+          <a href="/publico_alvo" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Voltar
+          </a>
+          <button type="submit" class="btn btn-success">
+            <i class="bi bi-check-circle"></i> Salvar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../rodape') %>

@@ -1,0 +1,15 @@
+<%- include('./cabecalho', { titulo: 'Erro' }) %>
+
+<main class="container my-5">
+  <div class="alert alert-danger" role="alert">
+    <h1 class="h4 mb-3">Ops, algo deu errado.</h1>
+    <p><%= message || 'Tente novamente mais tarde.' %></p>
+    <% if (returnLink) { %>
+      <a class="btn btn-primary" href="<%= returnLink %>">Voltar</a>
+    <% } else { %>
+      <a class="btn btn-secondary" href="/">Voltar para o inicio</a>
+    <% } %>
+  </div>
+</main>
+
+<%- include('./rodape') %>

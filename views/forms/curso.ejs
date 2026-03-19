@@ -1,0 +1,35 @@
+<%- include('../cabecalho', { titulo: isEdit ? 'Editar Curso' : 'Cadastrar Curso' }) %>
+
+<main id="conteudo-principal-form" class="container my-5">
+  <section id="secao-curso" class="card shadow p-4 p-md-5">
+    <div class="d-flex align-items-center mb-4 pb-3 border-bottom">
+      <i class="bi bi-book fs-4 me-2"></i>
+      <h1 class="fs-4 fw-bold mb-0">
+        <%= isEdit ? 'Editar Curso' : 'Cadastrar Novo Curso' %>
+      </h1>
+    </div>
+
+    <form method="POST" action="<%= isEdit ? `/curso/${curso.id_curso}/edit` : '/curso/cadastrar' %>">
+      <div class="mb-3">
+        <label for="campo-nome_curso" class="form-label">Nome do Curso</label>
+        <input
+          id="campo-nome_curso"
+          name="nome_curso"
+          class="form-control"
+          value="<%= curso?.nome_curso || '' %>"
+          placeholder="Ex: Programação em Python"
+          required
+        >
+      </div>
+
+      <div class="d-flex gap-2 mt-4 pt-3 border-top">
+        <a href="/curso" class="btn btn-secondary"><i class="bi bi-arrow-left me-2"></i>Voltar</a>
+        <button type="submit" class="btn btn-primary">
+          <i class="bi bi-check-circle me-2"></i><%= isEdit ? 'Salvar Alterações' : 'Cadastrar' %>
+        </button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<%- include('../rodape') %>

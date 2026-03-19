@@ -1,0 +1,51 @@
+
+<%- include('../cabecalho', { titulo: isEdit ? 'Editar Projeto Local' : 'Cadastrar Projeto Local' }) %>
+
+<% const registro = typeof projeto_local !== 'undefined' ? projeto_local : null; %>
+<% const registroId = registro && registro['id_projeto']; %>
+<main id="conteudo-principal-form" class="container my-5">
+  <section class="card shadow p-4 p-md-5">
+    <h1 class="fs-4 fw-bold mb-4 border-bottom pb-3">
+      <%= isEdit ? 'Editar projeto local' : 'Cadastrar projeto local' %>
+    </h1>
+    <form method="POST" action="<%= isEdit ? '/projeto_local/' + registroId + '/edit' : '/projeto_local/cadastrar' %>">
+
+      <div class="mb-3">
+        <label for="campo-id_projeto" class="form-label">Id Projeto</label>
+        <input
+          id="campo-id_projeto"
+          name="id_projeto"
+          class="form-control"
+          value="<%= registro && registro['id_projeto'] != null ? registro['id_projeto'] : '' %>"
+          placeholder="Id Projeto"
+          <%= isEdit ? 'readonly' : '' %>
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-id_local" class="form-label">Id Local</label>
+        <input
+          id="campo-id_local"
+          name="id_local"
+          class="form-control"
+          value="<%= registro && registro['id_local'] != null ? registro['id_local'] : '' %>"
+          placeholder="Id Local"
+          required
+        >
+      </div>
+      <div class="d-flex gap-2 mt-4">
+        <button type="submit" class="btn btn-primary">
+          <%= isEdit ? 'Salvar alteracoes' : 'Cadastrar' %>
+        </button>
+        <a href="/projeto_local" class="btn btn-secondary">Voltar</a>
+      </div>
+    </form>
+
+    <% if (isEdit && registroId) { %>
+    <form method="POST" action="/projeto_local/<%= registroId %>/delete" class="mt-3">
+      <button type="submit" class="btn btn-danger">Excluir</button>
+    </form>
+    <% } %>
+  </section>
+</main>
+<%- include('../rodape') %>

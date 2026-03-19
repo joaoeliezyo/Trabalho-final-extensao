@@ -1,0 +1,318 @@
+═══════════════════════════════════════════════════════════════════════════════
+                SISTEMA DE GESTÃO DE PROJETOS DE EXTENSÃO
+                       ✅ 100% FUNCIONAL E PRONTO
+═══════════════════════════════════════════════════════════════════════════════
+
+📍 INFORMAÇÕES RÁPIDAS
+─────────────────────────────────────────────────────────────────────────────
+
+URL de Acesso:        http://localhost:3000/login
+Usuário Padrão:       admin
+Senha Padrão:         admin123
+
+Servidor:             Node.js + Express.js
+Banco de Dados:       MySQL 8.0 (projetos_extensao)
+Endereço DB:          127.0.0.1:3306
+
+Interface:            Bootstrap 5.3.3 + Bootstrap Icons
+Templating:           EJS
+Autenticação:         Session-based (24 horas)
+Porta:                3000
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🚀 COMO INICIAR
+─────────────────────────────────────────────────────────────────────────────
+
+1. Abrir terminal na pasta do projeto
+2. Executar: npm start
+3. Aguardar mensagem: "Server is running on port http://localhost:3000/logo"
+4. Acessar: http://localhost:3000/login
+5. Fazer login com admin / admin123
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📱 MÓDULOS DISPONÍVEIS (16 TOTAL)
+─────────────────────────────────────────────────────────────────────────────
+
+MÓDULOS PRINCIPAIS:
+  ✓ /pessoa              - Gerenciar Pessoas
+  ✓ /projeto_extensao    - Gerenciar Projetos de Extensão
+  ✓ /avaliacao_institucional - Avaliações Institucionais
+  ✓ /curso               - Gerenciar Cursos
+  ✓ /tipo_pessoa         - Tipos de Pessoa
+  ✓ /faixa_etaria        - Faixas Etárias
+  ✓ /escolaridade        - Escolaridades
+
+MÓDULOS DE CONFIGURAÇÃO:
+  ✓ /tipo_instituicao    - Tipos de Instituição
+  ✓ /instituicao         - Instituições
+  ✓ /tipo_plano          - Tipos de Plano
+  ✓ /publico_alvo        - Públicos-Alvo
+  ✓ /tipo_acao           - Tipos de Ação
+  ✓ /linha_programatica  - Linhas Programáticas
+  ✓ /papel_projeto       - Papéis do Projeto
+  ✓ /local_execucao      - Locais de Execução
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎮 NAVEGAÇÃO
+─────────────────────────────────────────────────────────────────────────────
+
+APÓS LOGIN, você verá:
+
+1. MENU LATERAL (esquerda)
+   - Home (Dashboard)
+   - CADASTROS (7 módulos principais)
+   - PROJETOS (2 módulos)
+   - CONFIGURAÇÕES (8 módulos)
+   - Sair (logout)
+
+2. CARDS NO DASHBOARD (centro)
+   - Acesso Rápido aos 3 principais módulos
+   - 13 módulos adicionais em "Configurações e Suporte"
+
+3. PARA CADA MÓDULO:
+   - Listar: Clique no módulo no menu
+   - Buscar: Use o campo de busca na tabela
+   - Novo: Clique no botão "Novo" ou "Nova"
+   - Editar: Clique no ícone de lápis
+   - Excluir: Clique no ícone de lixeira
+   - Voltar: Clique em "Voltar" nos formulários
+
+═══════════════════════════════════════════════════════════════════════════════
+
+⚙️ OPERAÇÕES CRUD
+─────────────────────────────────────────────────────────────────────────────
+
+CADA MÓDULO TEM:
+
+📋 LISTAR
+  - Acesse o módulo pelo menu
+  - Mostra tabela com todos os registros
+  - Cada linha tem ID (badge), dados e ações
+
+🔍 BUSCAR
+  - Use o campo "Buscar..." na tabela
+  - Digite o nome ou descrição
+  - Clique em "Buscar"
+  - Resultados filtrados aparecem
+
+➕ CRIAR
+  - Clique no botão "Novo" (cor primária)
+  - Preencha o formulário
+  - Clique em "Salvar"
+  - Volta para a listagem com novo registro
+
+✏️ EDITAR
+  - Na tabela, clique no ícone de lápis
+  - Formulário abre com dados preenchidos
+  - Modifique o que precisar
+  - Clique em "Salvar"
+  - Volta para a listagem com dados atualizados
+
+🗑️ EXCLUIR
+  - Na tabela, clique no ícone de lixeira
+  - Confirmação: "Tem certeza?"
+  - Clique em OK para confirmar
+  - Registro é removido da listagem
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📊 ESTRUTURA DE DADOS
+─────────────────────────────────────────────────────────────────────────────
+
+BANCO DE DADOS: projetos_extensao
+
+TABELAS PRINCIPAIS:
+  - Pessoa (pessoas do sistema)
+  - Projeto_Extensao (projetos)
+  - Usuario (contas de login)
+  - Tipo_Pessoa (categorias)
+  - Faixa_Etaria (faixas etárias)
+  - Escolaridade (escolaridades)
+  - Curso (cursos)
+  - Avaliacao_Institucional (avaliações)
+  - Tipo_Instituicao (tipos de instituição)
+  - Instituicao (instituições)
+  - Tipo_Plano (tipos de plano)
+  - Publico_Alvo (públicos-alvo)
+  - Tipo_Acao (tipos de ação)
+  - Linha_Programatica (linhas)
+  - Papel_Projeto (papéis)
+  - Local_Execucao (locais)
+  + outras tabelas de relacionamento
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔒 AUTENTICAÇÃO
+─────────────────────────────────────────────────────────────────────────────
+
+LOGIN:
+  - Acesse: http://localhost:3000/login
+  - Usuário: admin
+  - Senha: admin123
+  - Clique em "Entrar"
+
+LOGOUT:
+  - Menu lateral > "Sair"
+  - ou Dashboard > "Sair"
+  - Volta para login
+
+SESSÃO:
+  - Expira em 24 horas
+  - Cookies HttpOnly (seguro)
+  - Mesmo fechando/reabrindo navegador, mantém sessão
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎨 INTERFACE
+─────────────────────────────────────────────────────────────────────────────
+
+LAYOUT:
+  - Menu lateral fixo (esquerda)
+  - Conteúdo principal (centro/direita)
+  - Tabelas responsivas (scroll horizontal em mobile)
+  - Formulários em layout de coluna
+  - Botões com ícones
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🛠️ TROUBLESHOOTING
+─────────────────────────────────────────────────────────────────────────────
+
+PROBLEMA: "Servidor não inicia"
+SOLUÇÃO:
+  - Verifique se MySQL está rodando
+  - Verifique credenciais no .env
+  - Verifique porta 3000 não está em uso
+
+PROBLEMA: "Erro ao conectar ao banco"
+SOLUÇÃO:
+  - Confirme MySQL está rodando: net start MySQL80
+  - Confirme credenciais de conexão
+  - Confirme database projetos_extensao existe
+
+PROBLEMA: "Página em branco / Erro 404"
+SOLUÇÃO:
+  - Verifique se fez login
+  - Verifique URL está correta (case sensitive)
+  - Verifique rota existe em routes/index.js
+
+PROBLEMA: "Formulário não carrega"
+SOLUÇÃO:
+  - Verifique arquivo .ejs existe
+  - Verifique caminho do include (../cabecalho)
+  - Verifique bootstrap-icons está carregando
+
+PROBLEMA: "Busca não funciona"
+SOLUÇÃO:
+  - Digite valor para buscar
+  - Clique em "Buscar"
+  - Se vazio, busca pode retornar tudo
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📁 ESTRUTURA DE ARQUIVOS
+─────────────────────────────────────────────────────────────────────────────
+
+projeto_extensao/
+├── models/              (16 arquivos de banco)
+├── controllers/         (16 arquivos de lógica)
+├── routes/              (9 arquivos de rotas)
+├── views/
+│   ├── forms/          (16 formulários)
+│   ├── consultas/      (16 tabelas)
+│   ├── cabecalho.ejs   (header comum)
+│   ├── rodape.ejs      (footer comum)
+│   ├── login.ejs       (login)
+│   └── dashboard.ejs   (dashboard)
+├── middleware/
+│   └── authMiddleware.js
+├── public/css/
+│   └── styles.css
+├── db.js               (config banco)
+├── server.js           (principal)
+├── package.json        (dependências)
+├── .env               (variáveis)
+├── README.md          (documentação)
+└── CONCLUSAO.md       (resumo)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📚 DEPENDÊNCIAS
+─────────────────────────────────────────────────────────────────────────────
+
+express@4.21.1          - Framework web
+mysql2@3.11.5           - Driver MySQL
+ejs@3.1.10              - Template engine
+dotenv@16.4.7           - Variáveis de ambiente
+express-session@1.18.1  - Gerenciador de sessão
+nodemon@3.1.7           - Auto-reload (dev)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ CHECKLIST DE FUNCIONALIDADES
+─────────────────────────────────────────────────────────────────────────────
+
+AUTENTICAÇÃO:
+  ✓ Login com usuário/senha
+  ✓ Session-based com 24h
+  ✓ Logout seguro
+  ✓ Proteção de rotas
+
+MÓDULOS:
+  ✓ 16 módulos CRUD
+  ✓ Listagem com tabelas
+  ✓ Busca/filtro
+  ✓ Criar novo
+  ✓ Editar existente
+  ✓ Excluir com confirmação
+
+INTERFACE:
+  ✓ Dashboard responsivo
+  ✓ Menu lateral
+  ✓ Cards de acesso rápido
+  ✓ Bootstrap Icons
+  ✓ Formulários validados
+  ✓ Tabelas com badges
+  ✓ Buttons com ícones
+
+BANCO DE DADOS:
+  ✓ 20+ tabelas
+  ✓ Relacionamentos
+  ✓ Dados de teste
+  ✓ Queries otimizadas
+  ✓ Prepared statements
+
+DOCUMENTAÇÃO:
+  ✓ README.md
+  ✓ CONCLUSAO.md
+  ✓ GUIA_RAPIDO.txt (este arquivo)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 PRÓXIMOS PASSOS (OPCIONAL)
+─────────────────────────────────────────────────────────────────────────────
+
+Para melhorar ainda mais:
+  1. Implementar bcrypt para hash de senhas
+  2. Adicionar validação com express-validator
+  3. Implementar rate limiting
+  4. Adicionar logs de auditoria
+  5. Backup automático do banco
+  6. Notificações por email
+  7. Exportar relatórios em PDF
+  8. Testes automatizados
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎉 APROVEITE O SISTEMA! 🎉
+
+Comece agora:
+  1. npm start
+  2. http://localhost:3000/login
+  3. admin / admin123
+  4. Explore os 16 módulos!
+
+═══════════════════════════════════════════════════════════════════════════════

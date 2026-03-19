@@ -1,0 +1,52 @@
+
+<%- include('../cabecalho', { titulo: 'Consulta de Escolaridade' }) %>
+
+<div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+  <h1 class="h4 mb-0">
+    <i class="bi bi-list"></i> Escolaridades Cadastradas
+  </h1>
+  <a href="/escolaridade/forms/escolaridade" class="btn btn-success">
+    <i class="bi bi-plus-lg"></i> Novo Registro
+  </a>
+</div>
+
+<div id="form-feedback-message" class="alert d-none" role="alert">
+</div>
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="table-light">
+      <tr>
+        <th><i class="bi bi-hash"></i> ID</th>
+        <th><i class="bi bi-book"></i> Descrição</th>
+        <th><i class="bi bi-gear"></i> Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% dados.forEach(d => { %>
+        <tr>
+          <td>
+            <span class="badge bg-primary"><%= d.id_escolaridade %></span>
+          </td>
+          <td><%= d.descricao %></td>
+          <td>
+            <a href="/escolaridade/<%= d.id_escolaridade %>/edit" class="btn btn-primary btn-sm">
+              <i class="bi bi-pencil"></i> Editar
+            </a>
+            <a href="/escolaridade/<%= d.id_escolaridade %>/delete" class="btn btn-danger btn-sm">
+              <i class="bi bi-trash"></i> Excluir
+            </a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<div class="mt-4">
+  <a href="/logo" class="btn btn-secondary">
+    <i class="bi bi-arrow-left"></i> Voltar
+  </a>
+</div>
+
+<%- include('../rodape') %>

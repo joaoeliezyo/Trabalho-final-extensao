@@ -1,0 +1,40 @@
+<%- include('../cabecalho', { titulo: isEdit ? 'Editar Faixa Etária' : 'Cadastrar Faixa Etária' }) %>
+
+<% const faixaId = faixaetaria && (faixaetaria.id_faixa || faixaetaria.id_faixaetaria); %>
+<% const faixaDescricao = faixaetaria && (faixaetaria.descricao || faixaetaria.nome_faixaetaria); %>
+
+<div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+  <h1 class="h4 mb-0">
+    <i class="bi bi-calendar-check"></i>
+    <%= isEdit ? 'Editar Faixa Etária' : 'Cadastrar Nova Faixa Etária' %>
+  </h1>
+</div>
+
+<form method="POST" action="<%= isEdit ? `/faixa_etaria/${faixaId}/edit` : '/faixa_etaria/cadastrar' %>">
+  <div class="mb-3">
+    <label for="campo-nome_faixaetaria" class="form-label">
+      <i class="bi bi-pencil"></i> Descrição
+    </label>
+    <input
+      id="campo-nome_faixaetaria"
+      name="nome_faixaetaria"
+      type="text"
+      class="form-control"
+      value="<%= faixaDescricao || '' %>"
+      placeholder="Ex: 18-25 anos, 25-35 anos, 35-50 anos..."
+      required
+    >
+    <small class="form-text text-muted">Digite uma descrição para a faixa etária</small>
+  </div>
+
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4 pt-3 border-top">
+    <a href="/faixa_etaria" class="btn btn-secondary">
+      <i class="bi bi-arrow-left"></i> Voltar
+    </a>
+    <button type="submit" class="btn btn-primary">
+      <i class="bi bi-check-lg"></i> <%= isEdit ? 'Salvar Alterações' : 'Cadastrar' %>
+    </button>
+  </div>
+</form>
+
+<%- include('../rodape') %>

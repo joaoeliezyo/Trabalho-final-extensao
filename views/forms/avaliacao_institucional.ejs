@@ -1,0 +1,87 @@
+
+<%- include('../cabecalho', { titulo: isEdit ? 'Editar Avaliacao Institucional' : 'Cadastrar Avaliacao Institucional' }) %>
+
+<% const registro = typeof avaliacao_institucional !== 'undefined' ? avaliacao_institucional : null; %>
+<% const registroId = registro && registro['id_avaliacao']; %>
+<main id="conteudo-principal-form" class="container my-5">
+  <section class="card shadow p-4 p-md-5">
+    <h1 class="fs-4 fw-bold mb-4 border-bottom pb-3">
+      <%= isEdit ? 'Editar avaliacao institucional' : 'Cadastrar avaliacao institucional' %>
+    </h1>
+    <form method="POST" action="<%= isEdit ? '/avaliacao_institucional/' + registroId + '/edit' : '/avaliacao_institucional/cadastrar' %>">
+
+      <div class="mb-3">
+        <label for="campo-id_avaliacao" class="form-label">Id Avaliacao</label>
+        <input
+          id="campo-id_avaliacao"
+          name="id_avaliacao"
+          class="form-control"
+          value="<%= registro && registro['id_avaliacao'] != null ? registro['id_avaliacao'] : '' %>"
+          placeholder="Id Avaliacao"
+          <%= isEdit ? 'readonly' : '' %>
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-id_projeto" class="form-label">Id Projeto</label>
+        <input
+          id="campo-id_projeto"
+          name="id_projeto"
+          class="form-control"
+          value="<%= registro && registro['id_projeto'] != null ? registro['id_projeto'] : '' %>"
+          placeholder="Id Projeto"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-criterios_avaliacao" class="form-label">Criterios Avaliacao</label>
+        <input
+          id="campo-criterios_avaliacao"
+          name="criterios_avaliacao"
+          class="form-control"
+          value="<%= registro && registro['criterios_avaliacao'] != null ? registro['criterios_avaliacao'] : '' %>"
+          placeholder="Criterios Avaliacao"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-metodologia_avaliacao" class="form-label">Metodologia Avaliacao</label>
+        <input
+          id="campo-metodologia_avaliacao"
+          name="metodologia_avaliacao"
+          class="form-control"
+          value="<%= registro && registro['metodologia_avaliacao'] != null ? registro['metodologia_avaliacao'] : '' %>"
+          placeholder="Metodologia Avaliacao"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="campo-forma_apresentacao_relatorio" class="form-label">Forma Apresentacao Relatorio</label>
+        <input
+          id="campo-forma_apresentacao_relatorio"
+          name="forma_apresentacao_relatorio"
+          class="form-control"
+          value="<%= registro && registro['forma_apresentacao_relatorio'] != null ? registro['forma_apresentacao_relatorio'] : '' %>"
+          placeholder="Forma Apresentacao Relatorio"
+          required
+        >
+      </div>
+      <div class="d-flex gap-2 mt-4">
+        <button type="submit" class="btn btn-primary">
+          <%= isEdit ? 'Salvar alteracoes' : 'Cadastrar' %>
+        </button>
+        <a href="/avaliacao_institucional" class="btn btn-secondary">Voltar</a>
+      </div>
+    </form>
+
+    <% if (isEdit && registroId) { %>
+    <form method="POST" action="/avaliacao_institucional/<%= registroId %>/delete" class="mt-3">
+      <button type="submit" class="btn btn-danger">Excluir</button>
+    </form>
+    <% } %>
+  </section>
+</main>
+<%- include('../rodape') %>

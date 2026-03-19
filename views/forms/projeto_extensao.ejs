@@ -1,0 +1,183 @@
+<%- include('../cabecalho', { titulo: isEdit ? 'Editar Projeto' : 'Cadastrar Projeto' }) %>
+
+  <% const registro=projeto_extensao || {}; %>
+    <% const registroId=registro.id_projeto; %>
+      <% const listaTipoPlanos=Array.isArray(tipoPlanos) ? tipoPlanos : []; %>
+        <% const listaCoordenadores=Array.isArray(coordenadores) ? coordenadores : []; %>
+          <% const listaPublicosAlvo=Array.isArray(publicosAlvo) ? publicosAlvo : []; %>
+
+            <main id="conteudo-principal-form" class="container my-5">
+              <section id="secao-projeto_extensao" class="card shadow p-4 p-md-5">
+                <div class="d-flex align-items-center mb-4 pb-3 border-bottom">
+                  <i class="bi bi-briefcase fs-4 me-2"></i>
+                  <h1 class="fs-4 fw-bold mb-0">
+                    <%= isEdit ? 'Editar Projeto de Extensão' : 'Cadastrar Projeto de Extensão' %>
+                  </h1>
+                </div>
+
+                <form method="POST"
+                  action="<%= isEdit && registroId ? '/projeto_extensao/' + registroId + '/edit' : '/projeto_extensao/cadastrar' %>">
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="campo-titulo" class="form-label">Título do Projeto</label>
+                      <input id="campo-titulo" name="titulo" class="form-control" value="<%= registro.titulo || '' %>"
+                        placeholder="Ex: Projeto de Extensão 2025" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                      <label for="campo-id_tipo_plano" class="form-label">Tipo de Plano</label>
+                      <select id="campo-id_tipo_plano" name="id_tipo_plano" class="form-select" required>
+                        <option value="">Selecione o tipo de plano</option>
+                        <% listaTipoPlanos.forEach((item)=> { %>
+                          <option value="<%= item.id_tipo_plano %>" <%=registro.id_tipo_plano==item.id_tipo_plano
+                            ? 'selected' : '' %>
+                            >
+                            <%= item.descricao %>
+                          </option>
+                          <% }) %>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="campo-periodo_inicio" class="form-label">Período Início</label>
+                      <input id="campo-periodo_inicio" name="periodo_inicio" type="date" class="form-control"
+                        value="<%= registro.periodo_inicio ? registro.periodo_inicio.toString().split('T')[0] : '' %>"
+                        required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                      <label for="campo-periodo_fim" class="form-label">Período Fim</label>
+                      <input id="campo-periodo_fim" name="periodo_fim" type="date" class="form-control"
+                        value="<%= registro.periodo_fim ? registro.periodo_fim.toString().split('T')[0] : '' %>"
+                        required>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="campo-carga_horaria_total" class="form-label">Carga Horária Total</label>
+                      <input id="campo-carga_horaria_total" name="carga_horaria_total" type="number"
+                        class="form-control" value="<%= registro.carga_horaria_total || '' %>" placeholder="Ex: 60"
+                        min="0" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                      <label for="campo-coordenador_id" class="form-label">Coordenador</label>
+                      <select id="campo-coordenador_id" name="coordenador_id" class="form-select" required>
+                        <option value="">Selecione o coordenador</option>
+                        <% listaCoordenadores.forEach((item)=> { %>
+                          <option value="<%= item.id_pessoa %>" <%=registro.coordenador_id==item.id_pessoa ? 'selected'
+                            : '' %>
+                            >
+                            <%= 'Pessoa ' + item.id_pessoa + ' - Projeto ' + item.id_projeto %>
+                          </option>
+                          <% }) %>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="campo-id_publico_alvo" class="form-label">Público Alvo</label>
+                    <select id="campo-id_publico_alvo" name="id_publico_alvo" class="form-select" required>
+                      <option value="">Selecione o público alvo</option>
+                      <% listaPublicosAlvo.forEach((item)=> { %>
+                        <option value="<%= item.id_publico_alvo %>" <%=registro.id_publico_alvo==item.id_publico_alvo
+                          ? 'selected' : '' %>
+                          >
+                          <%= item.descricao %>
+                        </option>
+                        <% }) %>
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="campo-objetivo" class="form-label">Objetivo</label>
+                    <textarea id="campo-objetivo" name="objetivo" class="form-control" rows="4"
+                      placeholder="Descreva o objetivo do projeto..."><%= registro.objetivo || '' %></textarea>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="campo-metodologia" class="form-label">Metodologia</label>
+                    <textarea id="campo-metodologia" name="metodologia" class="form-control" rows="4"
+                      placeholder="Descreva a metodologia..."><%= registro.metodologia || '' %></textarea>
+                  </div>
+
+                  <!-- Relacionamentos: Tipos de Ação -->
+                  <div class="card mb-3">
+                    <div class="card-header fw-bold">Tipos de Ação</div>
+                    <div class="card-body">
+                      <% const tiposAcao=typeof todosTiposAcao !=='undefined' ? todosTiposAcao : []; const
+                        relTipos=typeof relTiposAcao !=='undefined' ? relTiposAcao : []; %>
+                        <% if (tiposAcao.length> 0) { %>
+                          <% tiposAcao.forEach(item=> {
+                            const rel = relTipos.find(r => r.id_acao === item.id_tipo_acao);
+                            const checked = !!rel;
+                            const valor = rel ? rel.valor : '';
+                            %>
+                            <div class="d-flex align-items-center mb-2">
+                              <div class="form-check me-3">
+                                <input class="form-check-input" type="checkbox" name="tipo_acao_ids[]"
+                                  value="<%= item.id_tipo_acao %>" id="acao_<%= item.id_tipo_acao %>" <%=checked
+                                  ? 'checked' : '' %>>
+                                <label class="form-check-label" for="acao_<%= item.id_tipo_acao %>">
+                                  <%= item.nome %>
+                                </label>
+                              </div>
+                              <input type="number" name="valor_id_acao_<%= item.id_tipo_acao %>"
+                                class="form-control form-control-sm" style="width: 100px" placeholder="Valor"
+                                value="<%= valor %>">
+                            </div>
+                            <% }) %>
+                              <% } else { %>
+                                <p class="text-muted small">Nenhum tipo de ação cadastrado.</p>
+                                <% } %>
+                    </div>
+                  </div>
+
+                  <!-- Relacionamentos: Linhas Programáticas -->
+                  <div class="card mb-3">
+                    <div class="card-header fw-bold">Linhas Programáticas</div>
+                    <div class="card-body">
+                      <% const linhas=typeof todasLinhas !=='undefined' ? todasLinhas : []; const relLinhasProg=typeof
+                        relLinhas !=='undefined' ? relLinhas : []; %>
+                        <% if (linhas.length> 0) { %>
+                          <% linhas.forEach(item=> {
+                            const rel = relLinhasProg.find(r => r.id_linha === item.id_linha_programatica);
+                            const checked = !!rel;
+                            const valor = rel ? rel.valor : '';
+                            %>
+                            <div class="d-flex align-items-center mb-2">
+                              <div class="form-check me-3">
+                                <input class="form-check-input" type="checkbox" name="linha_programatica_ids[]"
+                                  value="<%= item.id_linha_programatica %>" id="linha_<%= item.id_linha_programatica %>"
+                                  <%=checked ? 'checked' : '' %>>
+                                <label class="form-check-label" for="linha_<%= item.id_linha_programatica %>">
+                                  <%= item.nome %>
+                                </label>
+                              </div>
+                              <input type="number" name="valor_id_linha_<%= item.id_linha_programatica %>"
+                                class="form-control form-control-sm" style="width: 100px" placeholder="Valor"
+                                value="<%= valor %>">
+                            </div>
+                            <% }) %>
+                              <% } else { %>
+                                <p class="text-muted small">Nenhuma linha programática cadastrada.</p>
+                                <% } %>
+                    </div>
+                  </div>
+
+                  <div class="d-flex gap-2 mt-4 pt-3 border-top">
+                    <a href="/projeto_extensao" class="btn btn-secondary"><i
+                        class="bi bi-arrow-left me-2"></i>Voltar</a>
+                    <button id="botao-enviar-projeto" class="btn btn-primary" type="submit">
+                      <i class="bi bi-check-circle me-2"></i>
+                      <%= isEdit ? 'Salvar Alterações' : 'Salvar' %>
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </main>
+
+            <%- include('../rodape') %>

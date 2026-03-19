@@ -1,0 +1,52 @@
+<%- include('../cabecalho') %>
+
+  <div class="container mt-4">
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h2><i class="bi bi-geo-alt"></i> Local de Execução</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <form method="POST"
+          action="<%= isEdit ? `/local_execucao/${local_execucao.id_local}/edit` : '/local_execucao/cadastrar' %>">
+
+          <div class="mb-3">
+            <label for="endereco" class="form-label">Endereço</label>
+            <input type="text" class="form-control" id="endereco" name="endereco"
+              value="<%= local_execucao.endereco || '' %>" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="cep" class="form-label">CEP</label>
+            <input type="text" class="form-control" id="cep" name="cep" value="<%= local_execucao.cep || '' %>"
+              placeholder="00000-000" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="bairro" class="form-label">Bairro</label>
+            <input type="text" class="form-control" id="bairro" name="bairro" value="<%= local_execucao.bairro || '' %>"
+              required>
+          </div>
+
+          <div class="mb-3">
+            <label for="cidade" class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="cidade" name="cidade" value="<%= local_execucao.cidade || '' %>"
+              required>
+          </div>
+
+          <div class="d-flex gap-2">
+            <a href="/local_execucao" class="btn btn-secondary">
+              <i class="bi bi-arrow-left"></i> Voltar
+            </a>
+            <button type="submit" class="btn btn-success">
+              <i class="bi bi-check-circle"></i> Salvar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../rodape') %>

@@ -1,0 +1,65 @@
+<%- include('../cabecalho') %>
+
+  <div class="container mt-4">
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h2><i class="bi bi-person-badge"></i> Papéis do Projeto</h2>
+      </div>
+      <div class="col-md-6 text-end">
+        <a href="/papel_projeto/forms/papel_projeto" class="btn btn-primary">
+          <i class="bi bi-plus-circle"></i> Novo
+        </a>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <form method="POST" action="/papel_projeto/filtro" class="d-flex gap-2">
+          <input type="text" name="nome" class="form-control" placeholder="Buscar...">
+          <button type="submit" class="btn btn-outline-secondary">
+            <i class="bi bi-search"></i> Buscar
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th><i class="bi bi-hash"></i> ID</th>
+            <th><i class="bi bi-text-left"></i> Descrição</th>
+            <th><i class="bi bi-gear"></i> Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% dados.forEach(item=> { %>
+            <tr>
+              <td><span class="badge bg-secondary">
+                  <%= item.id_papel %>
+                </span></td>
+              <td>
+                <% if (item.descricao) { %>
+                  <%= item.descricao %>
+                    <% } else if (item.nome) { %>
+                      <%= item.nome %>
+                        <% } %>
+              </td>
+              <td>
+                <a href="/papel_projeto/<%= item.id_papel %>/edit" class="btn btn-sm btn-warning">
+                  <i class="bi bi-pencil"></i>
+                </a>
+                <form method="POST" action="/papel_projeto/<%= item.id_papel %>/delete" style="display: inline;">
+                  <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza?')">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%- include('../rodape') %>

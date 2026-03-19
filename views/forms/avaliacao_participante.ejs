@@ -1,0 +1,125 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registro de Extensão — Curso</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<!--
+  <header id="cabecalho-professor">
+    <nav class="navbar navbar-expand-lg navbar-dark top-navbar-professor">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#" id="link-brand-professor">
+          <img src="./imagens/logo-unicet.branca.png" alt="Logo UNI•CET" height="36" class="me-2">
+          <span class="fw-bold">Novo Projeto</span>
+        </a>
+        <div class="d-flex align-items-center">
+            <span class="navbar-text text-white me-3 d-none d-md-block" id="professor-info">Bem-vindo(a), Professor(a) <span class="fw-bold">Nome do Professor</span>!</span>
+            <form action="/blac/auth/logout" method="POST" class="m-0">
+                <button type="submit" id="botao-sair-professor" class="btn btn-outline-light btn-sm">
+                    <i class="fas fa-sign-out-alt me-1"></i> Sair
+                </button>
+                <input type="hidden" name="redirect_success" value="login.html">
+            </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+-->
+  <main id="conteudo-principal-form" class="container my-5">
+    <section id="secao-curso" class="card shadow p-4 p-md-5">
+      <h1 class="fs-4 fw-bold mb-4 border-bottom pb-3" id="titulo-curso">cadastro curso</h1>
+
+
+      <div id="form-feedback-message" class="alert d-none" role="alert">
+        <!-- Mensagens de sucesso ou erro serão inseridas aqui pelo servidor -->
+      </div>
+      <form id="formulario-avaliacao_participante" method="POST" action="/avaliacao_participante/salvar">
+      <form method="POST" action="/avaliacao_participante/salvar">
+ <label for="campo-id_avaliacao_participante" class="form-label">id_avaliacao_participante</label>
+            <input id="campo-id_avaliacao_participante" name="id_avaliacao_participante" class="form-control" required placeholder="id_avaliacao_participante" readonly>
+            
+ <label for="campo-id_projeto" class="form-label">id_projeto</label>
+            <input id="campo-id_projeto" name="id_projeto" class="form-control" required placeholder="id_projeto" readonly>
+            
+ <label for="campo-data_resposta" class="form-label">data_resposta</label>
+            <input id="campo-data_resposta" name="data_resposta" class="form-control" required placeholder="data_resposta" readonly>
+            
+ <label for="campo-id_faixa" class="form-label">id_faixa</label>
+            <input id="campo-id_faixa" name="id_faixa" class="form-control" required placeholder="id_faixa" readonly>
+            
+ <label for="campo-id_escolaridade" class="form-label">id_escolaridade</label>
+            <input id="campo-id_escolaridade" name="id_escolaridade" class="form-control" required placeholder="id_escolaridade" readonly>
+            
+ <label for="campo-reside_na_comunidade" class="form-label">reside_na_comunidade</label>
+            <input id="campo-reside_na_comunidade" name="reside_na_comunidade" class="form-control" required placeholder="reside_na_comunidade" readonly>
+            
+ <label for="campo-avaliacao_conteudo" class="form-label">avaliacao_conteudo</label>
+            <input id="campo-avaliacao_conteudo" name="avaliacao_conteudo" class="form-control" required placeholder="avaliacao_conteudo" readonly>
+            
+ <label for="campo-atendeu_expectativas" class="form-label">atendeu_expectativas</label>
+            <input id="campo-atendeu_expectativas" name="atendeu_expectativas" class="form-control" required placeholder="atendeu_expectativas" readonly>
+            
+ <label for="campo-facilitadores_acessiveis" class="form-label">facilitadores_acessiveis</label>
+            <input id="campo-facilitadores_acessiveis" name="facilitadores_acessiveis" class="form-control" required placeholder="facilitadores_acessiveis" readonly>
+            
+ <label for="campo-escuta_comunidade" class="form-label">escuta_comunidade</label>
+            <input id="campo-escuta_comunidade" name="escuta_comunidade" class="form-control" required placeholder="escuta_comunidade" readonly>
+            
+ <label for="campo-estrutura_adequada" class="form-label">estrutura_adequada</label>
+            <input id="campo-estrutura_adequada" name="estrutura_adequada" class="form-control" required placeholder="estrutura_adequada" readonly>
+            
+ <label for="campo-sente_mais_capacitado" class="form-label">sente_mais_capacitado</label>
+            <input id="campo-sente_mais_capacitado" name="sente_mais_capacitado" class="form-control" required placeholder="sente_mais_capacitado" readonly>
+            
+ <label for="campo-contribuicao_pessoal" class="form-label">contribuicao_pessoal</label>
+            <input id="campo-contribuicao_pessoal" name="contribuicao_pessoal" class="form-control" required placeholder="contribuicao_pessoal" readonly>
+            
+ <label for="campo-descricao_contribuicao" class="form-label">descricao_contribuicao</label>
+            <input id="campo-descricao_contribuicao" name="descricao_contribuicao" class="form-control" required placeholder="descricao_contribuicao" readonly>
+            
+ <label for="campo-pretende_aplicar" class="form-label">pretende_aplicar</label>
+            <input id="campo-pretende_aplicar" name="pretende_aplicar" class="form-control" required placeholder="pretende_aplicar" readonly>
+            
+ <label for="campo-motivo_nao_aplicar" class="form-label">motivo_nao_aplicar</label>
+            <input id="campo-motivo_nao_aplicar" name="motivo_nao_aplicar" class="form-control" required placeholder="motivo_nao_aplicar" readonly>
+            
+ <label for="campo-recomendaria" class="form-label">recomendaria</label>
+            <input id="campo-recomendaria" name="recomendaria" class="form-control" required placeholder="recomendaria" readonly>
+            
+ <label for="campo-comentario_positivo" class="form-label">comentario_positivo</label>
+            <input id="campo-comentario_positivo" name="comentario_positivo" class="form-control" required placeholder="comentario_positivo" readonly>
+            
+ <label for="campo-sugestao_melhoria" class="form-label">sugestao_melhoria</label>
+            <input id="campo-sugestao_melhoria" name="sugestao_melhoria" class="form-control" required placeholder="sugestao_melhoria" readonly>
+            
+ <label for="campo-sugestoes_futuras" class="form-label">sugestoes_futuras</label>
+            <input id="campo-sugestoes_futuras" name="sugestoes_futuras" class="form-control" required placeholder="sugestoes_futuras" readonly>
+            
+ <label for="campo-consentimento" class="form-label">consentimento</label>
+            <input id="campo-consentimento" name="consentimento" class="form-control" required placeholder="consentimento" readonly>
+            
+ <label for="campo-assentimento" class="form-label">assentimento</label>
+            <input id="campo-assentimento" name="assentimento" class="form-control" required placeholder="assentimento" readonly>
+            
+
+<button id="botao-enviar-projeto" class="btn btn-primary me-2" type="submit">Salvar</button>
+</form> 
+   </section>
+  </main>
+<!--
+  <footer id="rodape-professor" class="text-center py-4 text-muted small mt-5 app-footer">
+    UNI•CET © 2025 — Extensão Acadêmica
+  </footer>
+-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+
+  </script>
+
+</body>
+</html>
