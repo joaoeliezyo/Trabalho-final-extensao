@@ -20,8 +20,8 @@ npm install
 2. **Configurar variáveis de ambiente (.env):**
 ```
 DB_HOST=127.0.0.1
-DB_USER=eli
-DB_PASSWORD=SOUFE68498whrew
+DB_USER=*******
+DB_PASSWORD=***************
 DB_NAME=projetos_extensao
 DB_PORT=3306
 NODE_ENV=development
